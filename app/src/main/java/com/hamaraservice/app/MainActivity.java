@@ -15,13 +15,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String APP_URL = "https://hamaraservice.com/app/";
     private WebView web;
-    private SwipeRefreshLayout swipe;
     private String pendingGeoOrigin;
     private GeolocationPermissions.Callback pendingGeoCallback;
 
@@ -29,13 +27,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        swipe = new SwipeRefreshLayout(this);
         web = new WebView(this);
-        swipe.addView(web);
-        setContentView(swipe);
-
-        swipe.setColorSchemeColors(0xFF0F4C5C, 0xFFF26B1D);
-        swipe.setOnRefreshListener(() -> web.reload());
+        setContentView(web);
 
         WebSettings s = web.getSettings();
         s.setJavaScriptEnabled(true);
@@ -61,10 +54,6 @@ public class MainActivity extends AppCompatActivity {
                 if (host.endsWith("hamaraservice.com")) return false; // stay in app
                 try { startActivity(new Intent(Intent.ACTION_VIEW, uri)); } catch (Exception ignored) {}
                 return true;
-            }
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                swipe.setRefreshing(false);
             }
         });
 
