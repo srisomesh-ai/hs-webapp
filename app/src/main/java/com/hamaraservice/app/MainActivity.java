@@ -73,6 +73,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Request notification permission on Android 13+
+        if (android.os.Build.VERSION.SDK_INT >= 33) {
+            if (ContextCompat.checkSelfPermission(this, "android.permission.POST_NOTIFICATIONS") != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{"android.permission.POST_NOTIFICATIONS"}, 102);
+            }
+        }
+
         web.loadUrl(APP_URL);
     }
 
