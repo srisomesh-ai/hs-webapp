@@ -1,0 +1,163 @@
+{
+  "project_info": {
+    "project_number": "1064274729048",
+    "firebase_url": "https://hamaraservice-s009-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "hamaraservice-s009",
+    "storage_bucket": "hamaraservice-s009.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1064274729048:android:a07626dcad0e2c0281d22d",
+        "android_client_info": {
+          "package_name": "com.hamaraservice.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1064274729048-emopseshkjb89tuuqa56hmm8t6tkvacv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5Vwb2Ssrt0ua_Ov6P-vIzetXditUnQak"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1064274729048-emopseshkjb89tuuqa56hmm8t6tkvacv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1064274729048-rq7tqmssda3g70hrd8oc6egqo0vuk8rv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.hamaraservice"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1064274729048:android:b8c34a2ccfbdae6681d22d",
+        "android_client_info": {
+          "package_name": "com.hamaraservice.customer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1064274729048-emopseshkjb89tuuqa56hmm8t6tkvacv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5Vwb2Ssrt0ua_Ov6P-vIzetXditUnQak"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1064274729048-emopseshkjb89tuuqa56hmm8t6tkvacv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1064274729048-rq7tqmssda3g70hrd8oc6egqo0vuk8rv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.hamaraservice"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1064274729048:android:cbe2348a221de4d681d22d",
+        "android_client_info": {
+          "package_name": "com.hamaraservice.provider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1064274729048-emopseshkjb89tuuqa56hmm8t6tkvacv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5Vwb2Ssrt0ua_Ov6P-vIzetXditUnQak"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1064274729048-emopseshkjb89tuuqa56hmm8t6tkvacv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1064274729048-rq7tqmssda3g70hrd8oc6egqo0vuk8rv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.hamaraservice"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1064274729048:android:4e70e7686be47c7281d22d",
+        "android_client_info": {
+          "package_name": "com.mycompany.hamaraservice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1064274729048-uu4bb4lno6h54ilgd83knhbgagog4u0u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.hamaraservice",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "1064274729048-emopseshkjb89tuuqa56hmm8t6tkvacv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5Vwb2Ssrt0ua_Ov6P-vIzetXditUnQak"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1064274729048-emopseshkjb89tuuqa56hmm8t6tkvacv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1064274729048-rq7tqmssda3g70hrd8oc6egqo0vuk8rv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.hamaraservice"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
