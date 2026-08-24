@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.webkit.GeolocationPermissions;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private WebView web;
     private String pendingGeoOrigin;
     private GeolocationPermissions.Callback pendingGeoCallback;
+    private String fcmToken = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         s.setMediaPlaybackRequiresUserGesture(false);
         s.setCacheMode(WebSettings.LOAD_DEFAULT);
 
+        // JS bridge: web app calls AndroidBridge.getFcmToken()
+        web.addJavascriptInterface(new Bridge(), "AndroidBridge");
+
         web.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
@@ -51,9 +57,17 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
                 String host = uri.getHost() == null ? "" : uri.getHost();
-                if (host.endsWith("hamaraservice.com")) return false; // stay in app
+                if (host.endsWith("hamaraservice.com")) return false;
                 try { startActivity(new Intent(Intent.ACTION_VIEW, uri)); } catch (Exception ignored) {}
                 return true;
+            }
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                // push the token into the page each load
+                if (fcmToken != null) {
+                    web.evaluateJavascript("window.__ANDROID_FCM_TOKEN='" + fcmToken + "';" +
+                        "if(window.onAndroidFcmToken)window.onAndroidFcmToken('" + fcmToken + "');", null);
+                }
             }
         });
 
@@ -73,14 +87,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Request notification permission on Android 13+
+        // Notification permission (Android 13+)
         if (android.os.Build.VERSION.SDK_INT >= 33) {
             if (ContextCompat.checkSelfPermission(this, "android.permission.POST_NOTIFICATIONS") != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, new String[]{"android.permission.POST_NOTIFICATIONS"}, 102);
             }
         }
 
+        // Fetch FCM token
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && task.getResult() != null) {
+                fcmToken = task.getResult();
+                getSharedPreferences("hs", MODE_PRIVATE).edit().putString("fcm_token", fcmToken).apply();
+                web.evaluateJavascript("window.__ANDROID_FCM_TOKEN='" + fcmToken + "';" +
+                    "if(window.onAndroidFcmToken)window.onAndroidFcmToken('" + fcmToken + "');", null);
+            }
+        });
+
         web.loadUrl(APP_URL);
+    }
+
+    public class Bridge {
+        @JavascriptInterface
+        public String getFcmToken() {
+            if (fcmToken != null) return fcmToken;
+            return getSharedPreferences("hs", MODE_PRIVATE).getString("fcm_token", "");
+        }
+        @JavascriptInterface
+        public boolean isAndroidApp() { return true; }
     }
 
     @Override
